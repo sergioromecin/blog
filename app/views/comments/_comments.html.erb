@@ -1,5 +1,11 @@
-<h2>Comments </h2>
-<div id="comments">
+<div class="mb-6 flex items-end justify-between gap-4">
+  <div>
+    <p class="text-xs font-bold uppercase tracking-[0.2em] text-amber-600">Conversation</p>
+    <h2 class="mt-2 text-2xl font-black text-stone-950">Comments</h2>
+  </div>
+  <span class="text-sm text-stone-500"><%= pluralize(post.comments.count, "comment") %></span>
+</div>
+<div id="comments" class="space-y-3">
   <%= render post.comments %>
 </div>
 

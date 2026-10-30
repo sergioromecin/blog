@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Red Social" %> · Red Social</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Blog">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-stone-50 text-stone-900 antialiased">
+    <header class="border-b border-stone-200 bg-stone-50/90 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-8">
+        <%= link_to posts_path, class: "group inline-flex items-center gap-3" do %>
+          <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-400 text-lg font-black text-stone-950 shadow-sm transition group-hover:-rotate-3">FN</span>
+          <span>
+            <span class="block text-sm font-black uppercase tracking-[0.24em] text-stonegit push origin main-950">Field Notes</span>
+            <span class="block text-xs text-stone-500">Ideas worth keeping</span>
+          </span>
+        <% end %>
+        <%= link_to "Write a note", new_post_path, class: "rounded-full bg-stone-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-500 hover:text-stone-950" %>
+      </div>
+    </header>
+
+    <main class="mx-auto min-h-[calc(100vh-89px)] w-full max-w-6xl px-6 py-12 lg:px-8">
+      <%= yield %>
+    </main>
+
+    <footer class="border-t border-stone-200 px-6 py-8 text-center text-xs text-stone-500">
+     Red Social · A small place for useful ideas
+    </footer>
+  </body>
+</html>

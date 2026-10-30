@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+trix-editor {
+  min-height: 18rem;
+  border: 1px solid var(--color-stone-300);
+  border-radius: 1rem;
+  background: white;
+  padding: 1rem 1.125rem;
+  box-shadow: 0 1px 2px rgb(28 25 23 / 0.05);
+}
+
+trix-editor:focus {
+  border-color: var(--color-amber-500);
+  outline: 4px solid var(--color-amber-100);
+}
+
+trix-toolbar {
+  margin-bottom: 0.5rem;
+}
+
+.trix-content {
+  line-height: 1.8;
+}
+
+.trix-content h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.trix-content a {
+  color: var(--color-amber-700);
+  text-decoration: underline;
+}
