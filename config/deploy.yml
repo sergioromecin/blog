@@ -7,7 +7,7 @@ image: dhh37/blog
 # Deploy to these servers.
 servers:
   web:
-    - demo.exitsoftware.io
+    - blog-ql84.onrender.com.
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -22,7 +22,7 @@ servers:
 #
  proxy:
    ssl: true
-   host: alpha.exitsoftware.io
+   host: blog-ql84.onrender.com.
 
 # Where you keep your container images.
 registry:
