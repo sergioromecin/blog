@@ -5,10 +5,10 @@
 # Puma starts a configurable number of processes (workers) and each process
 # serves each request in a thread from an internal thread pool.
 #
-# You can control the number of workers using ENV["WEB_CONCURRENCY"]. You
-# should only set this value when you want to run 2 or more workers. The
-# default is already 1. You can set it to `auto` to automatically start a worker
-# for each available processor.
+# You can control the number of workers using ENV["WEB_CONCURRENCY"]. Values of
+# 2 or more enable cluster mode; a single worker is run in single mode to avoid
+# the extra manager process. You can set it to `auto` to automatically start a
+# worker for each available processor.
 #
 # The ideal number of threads per worker depends both on how much time the
 # application spends waiting for IO operations and on how much you wish to
@@ -27,6 +27,14 @@
 # threads. This includes Active Record's `pool` parameter in `database.yml`.
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
+
+# A one-worker cluster adds overhead without improving throughput.
+configured_workers = ENV["WEB_CONCURRENCY"]&.strip
+unless configured_workers.nil? || configured_workers.empty?
+  configured_workers = Integer(configured_workers) unless configured_workers == "auto"
+  configured_workers = 0 if configured_workers == 1
+  workers configured_workers
+end
 
 # Keep the port configurable; the launch command owns the bind address.
 app_port = ENV.fetch("PORT", 3000)
